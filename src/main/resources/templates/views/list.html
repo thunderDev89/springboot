@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="java.lang.String"*/-->
+    <title th:text="${pageTitle}"></title>
+
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Body content -->
+        <div class="container">
+            <div class="text-center">
+                <h1>Task Manager</h1>
+                <p class="lead" th:text="${pageTitle}">This is an early version of my personal tasks manager website</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="panel panel-default">
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Creation date</th>
+                        </tr>
+                    </thead>
+                    <tbody th:remove="all-but-first">
+                        <!--/*@thymesVar id="tasks" type="java.util.List<com.softnaptics.training.domain.Task>"*/-->
+                        <tr th:each="task : ${tasks}">
+                            <!--/*@thymesVar id="name" type="java.lang.String"*/-->
+                            <td th:text="${task.name}">Default task name</td>
+                            <td th:text="${task.description}">Default description</td>
+                            <td th:text="${task.priority.toString()}">High</td>
+                            <!--<td th:text="${#dates.format(task.startDate, 'dd/MM/yyyy hh:mm:ss')}">24/05/2017 15:00:00</td>-->
+                            <td th:text="${task.startDate.toString()}">24/05/2017 15:00:00</td>
+                            <!--<td th:text="${#dates.format(task.endDate, 'dd/MM/yyyy hh:mm:ss')}">24/05/2017 16:00:00</td>-->
+                            <td th:text="${task.endDate.toString()}">24/05/2017 16:00:00</td>
+                            <!--<td th:text="${#dates.format(task.creationDate.toString(), 'dd/MM/yyyy')}">24/05/2017 16:00:00</td>-->
+                            <td th:text="${task.creationDate.toString()}">24/05/2017 16:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>Default task name</td>
+                            <td>Default description</td>
+                            <td>3</td>
+                            <td>24/05/2017 15:00:00</td>
+                            <td>24/05/2017 16:00:00</td>
+                            <td>24/05/2017 16:00:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
