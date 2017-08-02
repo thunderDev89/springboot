@@ -1,6 +1,7 @@
 package com.softnaptics.training.domain.billing;
 
 import com.softnaptics.training.domain.billing.rendering.BasicStreamUsingRenderer;
+import com.softnaptics.training.domain.billing.rendering.BasicTotalAmount2Renderer;
 import com.softnaptics.training.domain.billing.utils.ActivityType;
 import com.softnaptics.training.domain.billing.utils.Period;
 
@@ -50,11 +51,15 @@ public class InvoiceManager {
                 Period.forDays(1)
         );
 
-//        factureJuin.addActivity(normalActivity);
+        factureJuin.addActivity(normalActivity);
         factureJuin.addActivity(astreinteWeeknd);
         factureJuin.addActivity(astreinteNuit);
         factureJuin.addActivity(astreinteNuitActif);
         factureJuin.addActivity(astreinteNuitWeeknd);
+
+        final BasicTotalAmount2Renderer byTypeRendering = new BasicTotalAmount2Renderer();
+        factureJuin.accept(byTypeRendering);
+        byTypeRendering.render();
 
         factureJuin.print();
     }
@@ -123,11 +128,15 @@ public class InvoiceManager {
         factureJuillet.accept(renderer);
         renderer.render();
 
+        final BasicTotalAmount2Renderer renderer2 = new BasicTotalAmount2Renderer();
+        factureJuillet.accept(renderer2);
+        renderer2.render();
+
 //        factureJuillet.print();
     }
 
     public static void main(String[] args) {
-//        juneInvoice();
-        julyInvoice();
+        juneInvoice();
+//        julyInvoice();
     }
 }
