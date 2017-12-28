@@ -32,6 +32,6 @@ public class BasicTotalAmount2Renderer implements Renderer {
 
 
         System.out.println(String.format("HEURES NORMALES :: Total HT : %.2f €", amountHT));
-        System.out.println(String.format("ASTREINTES :: Total TTC : %.2f €", amountDutyHT));
+        System.out.println(String.format("ASTREINTES :: Total HT : %.2f €", amountDutyHT));
     }
 }

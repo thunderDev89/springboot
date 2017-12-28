@@ -26,7 +26,7 @@ public class Period {
         this.count = count;
     }
 
-    public static Period forDays(int count) {
+    public static Period forDays(double count) {
         return new Period(Type.DAY, count);
     }
 

@@ -135,8 +135,57 @@ public class InvoiceManager {
 //        factureJuillet.print();
     }
 
+    private static void octoberInvoice() {
+        final Invoice octoberInvoice = new Invoice("Facture Octobre", 9);
+
+        final Activity normal = new Activity("Jours normaux",
+                ActivityType.SEMAINE_ACTIF,
+                Date.from(LocalDate.of(2017, 10, 31).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Period.forDays(21.5)
+        );
+        final Activity nightShifts = new Activity(
+                "Astreintes passives",
+                ActivityType.SEMAINE_NUIT_PASSIF,
+                Date.from(LocalDate.of(2017, 10, 31).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Period.forDays(5)
+        );
+        final Activity nightCallingShift = new Activity(
+                "Nuit appel semaine",
+                ActivityType.SEMAINE_NUIT_ACTIF,
+                Date.from(LocalDate.of(2017, 10, 14).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Period.forHours(2)
+        );
+        final Activity weekndNightShift = new Activity(
+                "Shift de nuit weekend",
+                ActivityType.WEEKEND_NUIT_PASSIF,
+                Date.from(LocalDate.of(2017, 10, 15).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Period.forDays(1)
+        );
+        final Activity heuresSupps = new Activity(
+                "Heures supps",
+                ActivityType.HEURE_SUPP,
+                Date.from(LocalDate.of(2017, 10, 17).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Period.forHours(2)
+        );
+
+        octoberInvoice.addActivity(normal);
+        octoberInvoice.addActivity(nightShifts);
+        octoberInvoice.addActivity(nightCallingShift);
+        octoberInvoice.addActivity(heuresSupps);
+        octoberInvoice.addActivity(weekndNightShift);
+
+        final BasicStreamUsingRenderer renderer = new BasicStreamUsingRenderer();
+        octoberInvoice.accept(renderer);
+        renderer.render();
+
+        final BasicTotalAmount2Renderer renderer2 = new BasicTotalAmount2Renderer();
+        octoberInvoice.accept(renderer2);
+        renderer2.render();
+
+        // octoberInvoice.print();
+    }
+
     public static void main(String[] args) {
-        juneInvoice();
-//        julyInvoice();
+        julyInvoice();
     }
 }
