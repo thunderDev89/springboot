@@ -1,8 +1,5 @@
 package com.softnaptics.comptamodel.entries.activity.property;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
 public enum ActivityType {
     SEMAINE_ACTIF(1),
     HEURES_SUPPS(1.5),

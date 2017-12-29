@@ -1,11 +1,11 @@
-package com.softnaptics.impots.builder;
+package com.softnaptics.comptamodel.impots.builder;
 
 import com.google.common.collect.Sets;
-import com.softnaptics.impots.ChargesCalculator;
-import com.softnaptics.impots.TaxEvaluator;
-import com.softnaptics.impots.utils.ComplementCharge;
-import com.softnaptics.impots.utils.ComplementRevenu;
-import com.softnaptics.impots.utils.Tranche;
+import com.softnaptics.comptamodel.impots.ChargesCalculator;
+import com.softnaptics.comptamodel.impots.TaxEvaluator;
+import com.softnaptics.comptamodel.impots.utils.ComplementCharge;
+import com.softnaptics.comptamodel.impots.utils.ComplementRevenu;
+import com.softnaptics.comptamodel.impots.utils.Tranche;
 
 import java.util.Arrays;
 import java.util.Set;

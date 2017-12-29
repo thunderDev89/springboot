@@ -10,7 +10,10 @@
         <module>Scrapit</module>
         <module>compta-renderer</module>
         <module>compta-model</module>
-    </modules>
+        <module>compta-service</module>
+		<module>compta-repository</module>
+		<module>compta-main</module>
+	</modules>
     <packaging>pom</packaging>
 
 	<name>springboot</name>

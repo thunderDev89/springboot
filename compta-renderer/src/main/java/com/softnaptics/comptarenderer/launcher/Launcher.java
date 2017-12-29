@@ -6,11 +6,11 @@ import com.softnaptics.comptamodel.entries.activity.property.ActivityType;
 import com.softnaptics.comptamodel.entries.expensereport.ExpenseReport;
 import com.softnaptics.comptamodel.entries.remuneration.Remuneration;
 import com.softnaptics.comptamodel.entries.utils.DateUtils;
+import com.softnaptics.comptamodel.impots.IR;
+import com.softnaptics.comptamodel.invoice.Invoice;
 import com.softnaptics.comptarenderer.invoice.TestActivitiesByTypeRenderer;
 import com.softnaptics.comptarenderer.invoice.TestEntriesByTypeRenderer;
 import com.softnaptics.comptarenderer.pricing.PricingAmountRenderer;
-import com.softnaptics.impots.IR;
-import com.softnaptics.invoice.Invoice;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -33,8 +33,8 @@ public class Launcher {
 
         System.out.println("Montant impôts : " + impotsRevenus.calculateTax());
 
-        com.softnaptics.impots.builder.IR newIR =
-                new com.softnaptics.impots.builder.IR.Builder()
+        com.softnaptics.comptamodel.impots.builder.IR newIR =
+                new com.softnaptics.comptamodel.impots.builder.IR.Builder()
                         .baseRevenu(amount)
                         .microFoncier(2500)
                         .includeCsgCrds()

@@ -1,11 +1,8 @@
-package com.softnaptics.invoice;
+package com.softnaptics.comptamodel.invoice;
 
-import com.softnaptics.comptamodel.entries.Entry;
+import com.softnaptics.comptamodel.entries.AbstractEntry;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,8 +18,11 @@ public class Invoice {
     private String name;
     private Month month;
 
-    @OneToMany()
-    private List<Entry> entries;
+    //@OneToMany(mappedBy = "invoice")
+    @Transient
+    private List<AbstractEntry> entries;
+
+    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date billingDate;
 
     public Invoice() {
@@ -35,11 +35,11 @@ public class Invoice {
         entries = new ArrayList<>(0);
     }
 
-    public void addEntry(Entry entry) {
+    public void addEntry(AbstractEntry entry) {
         entries.add(entry);
     }
 
-    public List<Entry> getEntries() {
+    public List<AbstractEntry> getEntries() {
         return entries;
     }
 

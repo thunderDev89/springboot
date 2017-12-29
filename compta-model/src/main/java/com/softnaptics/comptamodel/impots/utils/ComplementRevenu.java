@@ -1,4 +1,4 @@
-package com.softnaptics.impots.utils;
+package com.softnaptics.comptamodel.impots.utils;
 
 public class ComplementRevenu {
     private final double amount;

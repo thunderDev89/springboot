@@ -1,6 +1,6 @@
-package com.softnaptics.impots;
+package com.softnaptics.comptamodel.impots;
 
-import com.softnaptics.impots.utils.Tranche;
+import com.softnaptics.comptamodel.impots.utils.Tranche;
 
 import java.util.ArrayList;
 import java.util.List;

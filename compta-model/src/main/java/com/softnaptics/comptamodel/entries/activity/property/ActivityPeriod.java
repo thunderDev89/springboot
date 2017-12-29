@@ -9,11 +9,13 @@ import javax.persistence.Enumerated;
 public class ActivityPeriod {
 
     @Column(name = "period_count")
-    private final double count;
+    private double count;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "period_type")
-    private final PeriodType type;
+    private PeriodType type;
+
+    public ActivityPeriod() {}
 
     private ActivityPeriod(double count, PeriodType type) {
         this.count = count;
@@ -42,7 +44,6 @@ public class ActivityPeriod {
         return type;
     }
 
-    @Embeddable
     public enum PeriodType {
         DAY, HOUR
     }

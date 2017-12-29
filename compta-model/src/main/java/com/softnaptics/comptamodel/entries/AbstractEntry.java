@@ -1,9 +1,8 @@
 package com.softnaptics.comptamodel.entries;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import com.softnaptics.comptamodel.invoice.Invoice;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
@@ -17,11 +16,16 @@ public abstract class AbstractEntry implements Entry {
 
     private double tva;
 
+    @Column(name = "unit_price_ht")
     private double unitPriceHT;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     //@Temporal(TemporalType.DATE)
     private Date pricingDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "invoice_id", nullable = false)
+    private Invoice invoice;
 
     public AbstractEntry() {
     }
@@ -59,5 +63,13 @@ public abstract class AbstractEntry implements Entry {
     @Override
     public Date getDate() {
         return pricingDate;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }
