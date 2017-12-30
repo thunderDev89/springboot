@@ -15,7 +15,7 @@ public class Invoice {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     private String name;
     private Month month;
@@ -24,10 +24,18 @@ public class Invoice {
     @Transient
     private List<AbstractEntry> entries;
 
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY)
+    @OneToMany(
+            mappedBy = "invoice",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     private List<Activity> activities;
 
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY)
+    @OneToMany(
+            mappedBy = "invoice",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     private List<Charges> charges;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
@@ -45,11 +53,11 @@ public class Invoice {
         charges = new ArrayList<>(0);
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -79,6 +87,7 @@ public class Invoice {
 
     private void addEntry(AbstractEntry entry) {
         entries.add(entry);
+        entry.setInvoice(this);
     }
 
     public void addActivity(Activity activity) {
@@ -115,7 +124,11 @@ public class Invoice {
 
     private <E extends AbstractEntry> void addNewEntries(List<E> olds, List<E> news) {
         entries.removeAll(olds);
-        entries.addAll(news);
+        for (E entry :
+                news) {
+            addEntry(entry);
+        }
+        //entries.addAll(news);
     }
 
     @Override

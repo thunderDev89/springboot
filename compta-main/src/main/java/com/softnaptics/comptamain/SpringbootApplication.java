@@ -46,9 +46,81 @@ public class SpringbootApplication {
 
     @PostConstruct
     private void testQueries() {
-        final Invoice invoice = addInvoice();
+
+        initProperInvoice();
+    }
+
+    private void testInitComptaObject() {
+        Invoice invoice = addInvoice();
         addActivities(invoice);
         addCharges(invoice);
+
+        invoice = invoicesRepo.findOne(invoice.getId());
+
+        System.err.println("List of activities : "+invoice.getActivities());
+        System.err.println("List of charges : "+invoice.getCharges());
+    }
+
+    private void initProperInvoice() {
+        final double TVA = .2;
+        final double TJM = 330;
+
+        final Invoice invoice = new Invoice(
+                "Facture de Décembre",
+                Month.DECEMBER,
+                DateUtils.asDate(LocalDate.of(2017, 12, 31))
+        );
+
+        final Activity normalDays = new Activity(
+                "Journées normales",
+                TVA,
+                TJM,
+                ActivityType.SEMAINE_ACTIF,
+                ActivityPeriod.forDays(20),
+                DateUtils.asDate(LocalDate.of(2017, 12, 31))
+        );
+        final Activity heureSupp = new Activity(
+                "Heure supp",
+                TVA,
+                TJM,
+                ActivityType.HEURES_SUPPS,
+                ActivityPeriod.forHours(1),
+                DateUtils.asDate(LocalDate.of(2017, 12, 14))
+        );
+        final Activity heureSupp1 = new Activity(
+                "Heure supp",
+                TVA,
+                TJM,
+                ActivityType.HEURES_SUPPS,
+                ActivityPeriod.forHours(1),
+                DateUtils.asDate(LocalDate.of(2017, 12, 15))
+        );
+
+        final Charges remuneration = ChargesFactory.createRemuneration(
+                4000,
+                DateUtils.asDate(LocalDate.of(2017, 8, 5))
+        );
+        final Charges chequesCesu = ChargesFactory.createExpenseReport(
+                "Achat cheque cesu",
+                .2,
+                500,
+                DateUtils.asDate(LocalDate.of(2017, 12, 13))
+        );
+        final Charges chequesCadeauClients = ChargesFactory.createExpenseReport(
+                "Cartes cadeau clients",
+                .2,
+                600,
+                DateUtils.asDate(LocalDate.of(2017, 12, 24))
+        );
+
+        invoice.addActivity(normalDays);
+        invoice.addActivity(heureSupp);
+        invoice.addActivity(heureSupp1);
+        invoice.addCharge(remuneration);
+        invoice.addCharge(chequesCesu);
+        invoice.addCharge(chequesCadeauClients);
+
+        invoicesRepo.save(invoice);
     }
 
     Invoice addInvoice() {
