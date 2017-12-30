@@ -3,7 +3,7 @@ package com.softnaptics.comptarenderer.invoice;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Maps;
-import com.softnaptics.comptamodel.entries.Entry;
+import com.softnaptics.comptamodel.entries.AbstractEntry;
 import com.softnaptics.comptamodel.entries.EntryType;
 import com.softnaptics.comptarenderer.Renderer;
 
@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class InvoiceEntryByTypeRenderer implements Renderer {
 
-    private ListMultimap<EntryType, Entry> mapEntriesByType;
+    private ListMultimap<EntryType, AbstractEntry> mapEntriesByType;
     private Map<EntryType, Amounts> mapAmounts;
 
     public InvoiceEntryByTypeRenderer() {
@@ -21,21 +21,21 @@ public class InvoiceEntryByTypeRenderer implements Renderer {
         mapAmounts = Maps.newHashMap();
     }
 
-    public InvoiceEntryByTypeRenderer(List<Entry> entriesOfInvoice) {
+    public InvoiceEntryByTypeRenderer(List<AbstractEntry> entriesOfInvoice) {
         this();
-        for (Entry entry : entriesOfInvoice) {
+        for (AbstractEntry entry : entriesOfInvoice) {
             mapEntriesByType.put(entry.getEntryType(), entry);
         }
-        for (final Map.Entry<EntryType, Collection<Entry>> mapEntry :
+        for (final Map.Entry<EntryType, Collection<AbstractEntry>> mapEntry :
                 mapEntriesByType.asMap().entrySet()) {
 
             final EntryType type = mapEntry.getKey();
-            final Collection<Entry> invoiceEntries = mapEntry.getValue();
+            final Collection<AbstractEntry> invoiceEntries = mapEntry.getValue();
 
             final Amounts amounts = new Amounts();
             mapAmounts.put(type, amounts);
 
-            for (final Entry entry : invoiceEntries) {
+            for (final AbstractEntry entry : invoiceEntries) {
                 amounts.addAmountHT(entry.getUnitPriceHT() * entry.getQty());
                 amounts.addAmountTTC(entry.getUnitPriceHT() * entry.getQty() * (1 + entry.getTVA()));
             }

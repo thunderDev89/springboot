@@ -3,7 +3,7 @@ package com.softnaptics.comptarenderer.invoice;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Maps;
-import com.softnaptics.comptamodel.entries.Entry;
+import com.softnaptics.comptamodel.entries.AbstractEntry;
 import com.softnaptics.comptamodel.entries.EntryType;
 import com.softnaptics.comptamodel.entries.activity.Activity;
 import com.softnaptics.comptamodel.entries.activity.property.ActivityType;
@@ -23,13 +23,13 @@ public class InvoiceActivitiesByTypeRenderer implements Renderer {
         mapAmounts = Maps.newHashMap();
     }
 
-    public InvoiceActivitiesByTypeRenderer(List<Entry> entries) {
+    public InvoiceActivitiesByTypeRenderer(List<AbstractEntry> entries) {
         this();
 
-        for (final Entry entry : entries) {
+        for (final AbstractEntry entry : entries) {
             // Add only entries of type Activity
             if (EntryType.ACTIVITY.equals(entry.getEntryType())) {
-                /*TODO Create special activity interface to be handle by this renderer,
+                /*TODO Create special activity interface to be handled by this renderer,
                     Instead of make accessible all the fields of the Activity's class
                 */
                 final Activity activity = (Activity) entry;

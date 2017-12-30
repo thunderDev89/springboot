@@ -2,7 +2,7 @@ package com.softnaptics.comptamodel.entries;
 
 import java.util.Date;
 
-public interface Entry {
+interface Entry {
 
     String getName();
 

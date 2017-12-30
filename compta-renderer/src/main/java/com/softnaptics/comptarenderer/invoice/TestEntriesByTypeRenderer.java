@@ -1,23 +1,23 @@
 package com.softnaptics.comptarenderer.invoice;
 
-import com.softnaptics.comptamodel.entries.Entry;
+import com.softnaptics.comptamodel.entries.AbstractEntry;
 import com.softnaptics.comptamodel.entries.EntryType;
 
 import java.util.List;
 
-public class TestEntriesByTypeRenderer extends ByTypeRenderer<EntryType, Entry> {
+public class TestEntriesByTypeRenderer extends ByTypeRenderer<EntryType, AbstractEntry> {
 
-    public TestEntriesByTypeRenderer(List<Entry> invoiceEntries) {
+    public TestEntriesByTypeRenderer(List<AbstractEntry> invoiceEntries) {
         super(invoiceEntries);
     }
 
     @Override
-    protected boolean shouldAddEntry(Entry invoiceEntry) {
+    protected boolean shouldAddEntry(AbstractEntry invoiceEntry) {
         return true;
     }
 
     @Override
-    protected EntryType getEntryType(Entry entry) {
+    protected EntryType getEntryType(AbstractEntry entry) {
         return entry.getEntryType();
     }
 }

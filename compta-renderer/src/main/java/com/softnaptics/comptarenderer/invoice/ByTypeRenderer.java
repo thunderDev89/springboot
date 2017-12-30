@@ -3,14 +3,14 @@ package com.softnaptics.comptarenderer.invoice;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Maps;
-import com.softnaptics.comptamodel.entries.Entry;
+import com.softnaptics.comptamodel.entries.AbstractEntry;
 import com.softnaptics.comptarenderer.Renderer;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public abstract class ByTypeRenderer<T, E extends Entry> implements Renderer {
+public abstract class ByTypeRenderer<T, E extends AbstractEntry> implements Renderer {
 
     private ListMultimap<T, E> byTypeMap;
     private Map<T, Amounts> mapAmounts;
@@ -20,10 +20,10 @@ public abstract class ByTypeRenderer<T, E extends Entry> implements Renderer {
         mapAmounts = Maps.newHashMap();
     }
 
-    public ByTypeRenderer(List<Entry> invoiceEntries) {
+    public ByTypeRenderer(List<AbstractEntry> invoiceEntries) {
         this();
 
-        for (final Entry invoiceEntry : invoiceEntries) {
+        for (final AbstractEntry invoiceEntry : invoiceEntries) {
             if (shouldAddEntry(invoiceEntry)) {
                 addEntry(invoiceEntry);
             }
@@ -66,11 +66,11 @@ public abstract class ByTypeRenderer<T, E extends Entry> implements Renderer {
         amounts.print();
     }
 
-    protected abstract boolean shouldAddEntry(Entry invoiceEntry);
+    protected abstract boolean shouldAddEntry(AbstractEntry invoiceEntry);
 
-    protected void addEntry(Entry invoiceEntry) {
+    protected void addEntry(AbstractEntry invoiceEntry) {
         byTypeMap.put(getEntryType(invoiceEntry), (E) invoiceEntry);
     }
 
-    abstract protected T getEntryType(Entry entry);
+    abstract protected T getEntryType(AbstractEntry entry);
 }

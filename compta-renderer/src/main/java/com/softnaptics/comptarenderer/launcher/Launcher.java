@@ -110,13 +110,13 @@ public class Launcher {
                 DateUtils.asDate(LocalDate.of(2017, 7, 28))
         );
 
-        julyInvoice.addEntry(normalDays);
-        julyInvoice.addEntry(astreinteWeeknd);
-        julyInvoice.addEntry(astreinteFerie);
-        julyInvoice.addEntry(nightShifts);
-        julyInvoice.addEntry(weekndNightShift);
-        julyInvoice.addEntry(nightCallingShifts);
-        julyInvoice.addEntry(suppHours);
+        julyInvoice.addActivity(normalDays);
+        julyInvoice.addActivity(astreinteWeeknd);
+        julyInvoice.addActivity(astreinteFerie);
+        julyInvoice.addActivity(nightShifts);
+        julyInvoice.addActivity(weekndNightShift);
+        julyInvoice.addActivity(nightCallingShifts);
+        julyInvoice.addActivity(suppHours);
 
         final Charges remuneration = ChargesFactory.createRemuneration(
                 4500,
@@ -130,8 +130,8 @@ public class Launcher {
                 DateUtils.asDate(LocalDate.of(2017, 8, 15))
         );
 
-        julyInvoice.addEntry(remuneration);
-        julyInvoice.addEntry(ndfTelPro);
+        julyInvoice.addCharge(remuneration);
+        julyInvoice.addCharge(ndfTelPro);
 
         final TestActivitiesByTypeRenderer invoiceActivitiesByTypeRenderer = new TestActivitiesByTypeRenderer(julyInvoice.getEntries());
         invoiceActivitiesByTypeRenderer.render();
@@ -196,11 +196,11 @@ public class Launcher {
                 DateUtils.asDate(LocalDate.of(2017, 10, 17))
         );
 
-        octoberInvoice.addEntry(normalDays);
-        octoberInvoice.addEntry(nightShifts);
-        octoberInvoice.addEntry(nightCallingShifts);
-        octoberInvoice.addEntry(weekndNightShift);
-        octoberInvoice.addEntry(suppHours);
+        octoberInvoice.addActivity(normalDays);
+        octoberInvoice.addActivity(nightShifts);
+        octoberInvoice.addActivity(nightCallingShifts);
+        octoberInvoice.addActivity(weekndNightShift);
+        octoberInvoice.addActivity(suppHours);
 
         final PricingAmountRenderer amountRenderer = new PricingAmountRenderer(octoberInvoice.getEntries());
         amountRenderer.render();
@@ -265,12 +265,12 @@ public class Launcher {
                 DateUtils.asDate(LocalDate.of(2017, 11, 30))
         );
 
-        invoice.addEntry(normalDays);
-        invoice.addEntry(firstNovember);
-        invoice.addEntry(nightShiftFerie);
-        invoice.addEntry(nightCallingShiftFerie);
-        invoice.addEntry(nightShifts);
-        invoice.addEntry(weekdnNightShifts);
+        invoice.addActivity(normalDays);
+        invoice.addActivity(firstNovember);
+        invoice.addActivity(nightShiftFerie);
+        invoice.addActivity(nightCallingShiftFerie);
+        invoice.addActivity(nightShifts);
+        invoice.addActivity(weekdnNightShifts);
 
         final TestActivitiesByTypeRenderer invoiceActivitiesByTypeRenderer = new TestActivitiesByTypeRenderer(invoice.getEntries());
         invoiceActivitiesByTypeRenderer.render();
@@ -336,12 +336,12 @@ public class Launcher {
                 DateUtils.asDate(LocalDate.of(2017, 12, 21))
         );
 
-        invoice.addEntry(normalDays);
-        invoice.addEntry(heureSupp);
-        invoice.addEntry(heureSupp1);
-        invoice.addEntry(nightShifts);
-        invoice.addEntry(weekdnNightShifts);
-        invoice.addEntry(nightCallingShifts);
+        invoice.addActivity(normalDays);
+        invoice.addActivity(heureSupp);
+        invoice.addActivity(heureSupp1);
+        invoice.addActivity(nightShifts);
+        invoice.addActivity(weekdnNightShifts);
+        invoice.addActivity(nightCallingShifts);
 
         final TestActivitiesByTypeRenderer invoiceActivitiesByTypeRenderer = new TestActivitiesByTypeRenderer(invoice.getEntries());
         invoiceActivitiesByTypeRenderer.render();
