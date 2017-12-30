@@ -11,5 +11,16 @@
 
     <artifactId>compta-service</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.softnaptics.training</groupId>
+            <artifactId>compta-repository</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.softnaptics.training</groupId>
+            <artifactId>compta-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

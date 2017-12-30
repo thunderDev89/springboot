@@ -47,8 +47,8 @@ public class InvoiceActivitiesByTypeRenderer implements Renderer {
             mapAmounts.put(type, amounts);
 
             for (final Activity activity : invoiceActivities) {
-                amounts.addAmountHT(activity.getAmountHT() * activity.getQty());
-                amounts.addAmountTTC(activity.getAmountHT() * activity.getQty() * (1 + activity.getTVA()));
+                amounts.addAmountHT(activity.getUnitPriceHT() * activity.getQty());
+                amounts.addAmountTTC(activity.getUnitPriceHT() * activity.getQty() * (1 + activity.getTVA()));
             }
         }
     }

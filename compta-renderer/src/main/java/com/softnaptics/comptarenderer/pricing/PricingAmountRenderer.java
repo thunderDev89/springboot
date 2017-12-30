@@ -27,8 +27,8 @@ public class PricingAmountRenderer implements Renderer {
     private void computeAmountsToRender() {
         for (Entry entry :
                 entries) {
-            amountHT += entry.getAmountHT() * entry.getQty();
-            amountTTC += entry.getAmountHT() * entry.getQty() * (1 + entry.getTVA());
+            amountHT += entry.getUnitPriceHT() * entry.getQty();
+            amountTTC += entry.getUnitPriceHT() * entry.getQty() * (1 + entry.getTVA());
         }
     }
 

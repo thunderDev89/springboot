@@ -36,8 +36,8 @@ public class InvoiceEntryByTypeRenderer implements Renderer {
             mapAmounts.put(type, amounts);
 
             for (final Entry entry : invoiceEntries) {
-                amounts.addAmountHT(entry.getAmountHT() * entry.getQty());
-                amounts.addAmountTTC(entry.getAmountHT() * entry.getQty() * (1 + entry.getTVA()));
+                amounts.addAmountHT(entry.getUnitPriceHT() * entry.getQty());
+                amounts.addAmountTTC(entry.getUnitPriceHT() * entry.getQty() * (1 + entry.getTVA()));
             }
         }
     }

@@ -15,7 +15,7 @@ public abstract class ByTypeRenderer<T, E extends Entry> implements Renderer {
     private ListMultimap<T, E> byTypeMap;
     private Map<T, Amounts> mapAmounts;
 
-    public ByTypeRenderer() {
+    private ByTypeRenderer() {
         byTypeMap = ArrayListMultimap.create();
         mapAmounts = Maps.newHashMap();
     }
@@ -39,8 +39,8 @@ public abstract class ByTypeRenderer<T, E extends Entry> implements Renderer {
             mapAmounts.put(type, amounts);
 
             for (final E value : values) {
-                amounts.addAmountHT(value.getAmountHT() * value.getQty());
-                amounts.addAmountTTC(value.getAmountHT() * value.getQty() * (1 + value.getTVA()));
+                amounts.addAmountHT(value.getUnitPriceHT() * value.getQty());
+                amounts.addAmountTTC(value.getUnitPriceHT() * value.getQty() * (1 + value.getTVA()));
             }
         }
     }

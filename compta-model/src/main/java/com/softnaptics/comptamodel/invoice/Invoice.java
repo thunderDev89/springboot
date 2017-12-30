@@ -1,6 +1,7 @@
 package com.softnaptics.comptamodel.invoice;
 
 import com.softnaptics.comptamodel.entries.AbstractEntry;
+import com.softnaptics.comptamodel.entries.Entry;
 
 import javax.persistence.*;
 import java.time.Month;
@@ -20,7 +21,7 @@ public class Invoice {
 
     //@OneToMany(mappedBy = "invoice")
     @Transient
-    private List<AbstractEntry> entries;
+    private List<Entry> entries;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date billingDate;
@@ -39,7 +40,7 @@ public class Invoice {
         entries.add(entry);
     }
 
-    public List<AbstractEntry> getEntries() {
+    public List<Entry> getEntries() {
         return entries;
     }
 

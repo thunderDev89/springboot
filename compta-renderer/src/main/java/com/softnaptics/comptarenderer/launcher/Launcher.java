@@ -3,8 +3,8 @@ package com.softnaptics.comptarenderer.launcher;
 import com.softnaptics.comptamodel.entries.activity.Activity;
 import com.softnaptics.comptamodel.entries.activity.property.ActivityPeriod;
 import com.softnaptics.comptamodel.entries.activity.property.ActivityType;
-import com.softnaptics.comptamodel.entries.expensereport.ExpenseReport;
-import com.softnaptics.comptamodel.entries.remuneration.Remuneration;
+import com.softnaptics.comptamodel.entries.charges.Charges;
+import com.softnaptics.comptamodel.entries.charges.ChargesFactory;
 import com.softnaptics.comptamodel.entries.utils.DateUtils;
 import com.softnaptics.comptamodel.impots.IR;
 import com.softnaptics.comptamodel.invoice.Invoice;
@@ -118,12 +118,15 @@ public class Launcher {
         julyInvoice.addEntry(nightCallingShifts);
         julyInvoice.addEntry(suppHours);
 
-        final Remuneration remuneration = new Remuneration(4500, DateUtils.asDate(LocalDate.of(2017, 8, 5)));
+        final Charges remuneration = ChargesFactory.createRemuneration(
+                4500,
+                DateUtils.asDate(LocalDate.of(2017, 8, 5))
+        );
 
-        final ExpenseReport ndfTelPro = new ExpenseReport(
+        final Charges ndfTelPro = ChargesFactory.createExpenseReport(
                 "Achat téléphone",
-                540.41,
                 .2,
+                540.41,
                 DateUtils.asDate(LocalDate.of(2017, 8, 15))
         );
 
