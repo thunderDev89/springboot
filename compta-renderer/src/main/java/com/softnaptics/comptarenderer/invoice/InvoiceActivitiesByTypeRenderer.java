@@ -37,6 +37,11 @@ public class InvoiceActivitiesByTypeRenderer implements Renderer {
             }
         }
 
+        //TODO calculate amounts
+        calculateAmounts();
+    }
+
+    private void calculateAmounts() {
         for (final Map.Entry<ActivityType, Collection<Activity>> entry :
                 activitiesByType.asMap().entrySet()) {
 
@@ -72,7 +77,5 @@ public class InvoiceActivitiesByTypeRenderer implements Renderer {
         }
         System.out.println(String.format("\n------- %s --------", "TOTAUX"));
         amounts.print();
-
-
     }
 }

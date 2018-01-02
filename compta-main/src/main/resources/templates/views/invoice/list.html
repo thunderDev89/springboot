@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="java.lang.String"*/-->
+    <title th:text="${pageTitle}"></title>
+
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Body content -->
+        <div class="container">
+            <div class="text-center">
+                <h1>Compta Manager</h1>
+                <!--/*@thymesVar id="pageTitle" type="java.lang.String"*/-->
+                <p class="lead" th:text="${pageTitle}">This is an early version of my personal compta manager website</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="panel panel-default">
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Month</th>
+                            <th>Date</th>
+                            <th>Activities details</th>
+                            <th>Entries details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!--/*@thymesVar id="invoices" type="java.util.List<com.softnaptics.comptamodel.invoice.Invoice>"*/-->
+                        <tr th:each="invoice : ${invoices}">
+                            <td th:text="${invoice.getName()}">Name</td>
+                            <td th:text="${invoice.getMonth()}">Month</td>
+                            <td th:text="${invoice.getBillingDate()}">Date</td>
+                            <td><a href="/activity/sumup" th:href="@{'/invoices/'+${invoice.id}+'/activity/sumup'}">link</a></td>
+                            <td><a href="/entry/sumup" th:href="@{'/invoices/'+${invoice.id}+'/entry/sumup'}">link</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

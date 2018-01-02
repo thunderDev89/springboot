@@ -13,6 +13,7 @@
         <module>compta-service</module>
 		<module>compta-repository</module>
 		<module>compta-main</module>
+		<module>compta-controller</module>
 	</modules>
     <packaging>pom</packaging>
 

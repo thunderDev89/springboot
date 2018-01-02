@@ -44,10 +44,20 @@ public class InvoiceEntryByTypeRenderer implements Renderer {
 
     @Override
     public void render() {
+        System.out.println(getResults());
+    }
+
+    public String getResults() {
+        final StringBuilder results = new StringBuilder();
+
         for (Map.Entry<EntryType, Amounts> amountsEntry : mapAmounts.entrySet()) {
             final Amounts amounts = amountsEntry.getValue();
-            System.out.println(String.format("\n------- %s --------", amountsEntry.getKey()));
-            amounts.print();
+            results.append("\n").append("------- ").append(amountsEntry.getKey()).append(" -------");
+            //System.out.println(String.format("\n------- %s --------", amountsEntry.getKey()));
+            results.append("\n").append(amounts.getResults());
+            //amounts.print();
         }
+
+        return results.toString();
     }
 }

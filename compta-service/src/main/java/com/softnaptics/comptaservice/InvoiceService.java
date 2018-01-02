@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class InvoiceService {
@@ -23,5 +24,13 @@ public class InvoiceService {
 
     public Collection<Invoice> saveAll(Collection<Invoice> invoices) {
         return repository.save(invoices);
+    }
+
+    public List<Invoice> getAll() {
+        return repository.findAll();
+    }
+
+    public Invoice get(int id) {
+        return repository.findOne(id);
     }
 }

@@ -18,8 +18,8 @@ import java.time.Month;
 public class Launcher {
 
     public static void main(String[] args) {
-        julyInvoice();
-        //impotRevenus(34000);
+        //julyInvoice();
+        impotRevenus(34000);
     }
 
     public static void impotRevenus(double amount) {
@@ -28,7 +28,7 @@ public class Launcher {
         IR impotsRevenus = new IR();
 
         impotsRevenus.addComplementRevenu(amount, .1); // Revenus de base
-        impotsRevenus.addComplementRevenu(2500, .3); //Revenus foncier
+        //impotsRevenus.addComplementRevenu(2500, .3); //Revenus foncier
         impotsRevenus.addComplementCharges("CSG_CRDS", .029 * 1.37);
 
         System.out.println("Montant impôts : " + impotsRevenus.calculateTax());

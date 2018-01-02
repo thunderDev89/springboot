@@ -9,19 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>compta-main</artifactId>
+    <artifactId>compta-controller</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.softnaptics.training</groupId>
-            <artifactId>compta-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.softnaptics.training</groupId>
-            <artifactId>compta-repository</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>com.softnaptics.training</groupId>
             <artifactId>compta-service</artifactId>
@@ -29,13 +19,13 @@
         </dependency>
         <dependency>
             <groupId>com.softnaptics.training</groupId>
-            <artifactId>compta-renderer</artifactId>
+            <artifactId>compta-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <groupId>com.softnaptics.training</groupId>
+            <artifactId>compta-renderer</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

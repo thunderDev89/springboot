@@ -4,6 +4,8 @@ public class Amounts {
 
     private double amountHT;
     private double amountTTC;
+    private final String RESULT_HT_FORMAT = "Montant total HT : %.2f€".intern();
+    private final String RESULT_TTC_FORMAT = "Montant total TTC : %.2f€".intern();
 
     public Amounts() {
         amountHT = 0;
@@ -26,7 +28,14 @@ public class Amounts {
     }
 
     public void print() {
-        System.out.println(String.format("Montant total HT : %.2f€", amountHT));
-        System.out.println(String.format("Montant total TTC : %.2f€", amountTTC));
+        System.out.println(getResults());
+    }
+
+    public String getResults() {
+        final StringBuilder result = new StringBuilder();
+        result.append(String.format(RESULT_HT_FORMAT, amountHT)).append("\n");
+        result.append(String.format(RESULT_TTC_FORMAT, amountTTC)).append("\n");
+
+        return result.toString();
     }
 }

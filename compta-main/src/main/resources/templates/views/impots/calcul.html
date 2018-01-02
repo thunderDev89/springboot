@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title>Calcul impots</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <article>
+            <!--/*@thymesVar id="task" type="com.softnaptics.training.domain.Task"*/-->
+            <header class="page-header">
+                <h1>Calcul impôts</h1>
+            </header>
+            <section class="lead">
+                <form action="" method="post">
+                    <label for="amount">Montant</label>
+                    <input id="amount" type="number" name="amount" />
+                    <input type="submit" value="Calculer" />
+                </form>
+            </section>
+            <p></p>
+            <p></p>
+            <section th:if="${result}">
+                <label for="ir_result">Resultat</label>
+                <input id="ir_result" type="text" th:value="${result}" />
+            </section>
+        </article>
+    </div>
+</body>
+</html>
