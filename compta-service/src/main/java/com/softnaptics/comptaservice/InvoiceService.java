@@ -33,4 +33,8 @@ public class InvoiceService {
     public Invoice get(int id) {
         return repository.findOne(id);
     }
+
+    public Invoice update(Invoice invoice) {
+        return save(invoice);
+    }
 }

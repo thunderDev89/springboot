@@ -30,6 +30,7 @@
                             <th>Date</th>
                             <th>Activities details</th>
                             <th>Entries details</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +39,16 @@
                             <td th:text="${invoice.getName()}">Name</td>
                             <td th:text="${invoice.getMonth()}">Month</td>
                             <td th:text="${invoice.getBillingDate()}">Date</td>
+                            <!--<td th:text="${#dates.format(invoice.getBillingDate(), 'dd/MM/yyyy')}">Date</td>-->
                             <td><a href="/activity/sumup" th:href="@{'/invoices/'+${invoice.id}+'/activity/sumup'}">link</a></td>
                             <td><a href="/entry/sumup" th:href="@{'/invoices/'+${invoice.id}+'/entry/sumup'}">link</a></td>
+                            <td><a href="#" th:href="@{'/invoices/'+${invoice.id}}">edit</a></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="panel-default">
+                <a class="btn btn-primary" th:href="@{/invoices/add}">New Invoice</a>
             </div>
         </div>
     </div>

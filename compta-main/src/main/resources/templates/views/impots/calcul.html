@@ -15,16 +15,18 @@
             </header>
             <section class="lead">
                 <form action="" method="post">
-                    <label for="amount">Montant</label>
-                    <input id="amount" type="number" name="amount" />
-                    <input type="submit" value="Calculer" />
+                    <div class="form-group">
+                        <label for="amount">Montant</label>
+                        <input id="amount" class="form-control" type="number" name="amount" placeholder="Montant de vos revenus" />
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Calculer" />
                 </form>
             </section>
             <p></p>
             <p></p>
-            <section th:if="${result}">
-                <label for="ir_result">Resultat</label>
-                <input id="ir_result" type="text" th:value="${result}" />
+            <section class="alert alert-success" th:if="${result}">
+                <label th:text="'Le montant de l\'impot s\'élève à '+${#numbers.formatDecimal(result, 3, 'POINT', 2, 'COMMA')}+'€'">Resultat</label>
             </section>
         </article>
     </div>

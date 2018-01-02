@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title th:text="${pageTitle}">Dummy title</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Body content -->
+        <div class="container">
+            <div class="text-center">
+                <h1>Compta Manager</h1>
+                <!--/*@thymesVar id="pageTitle" type="java.lang.String"*/-->
+                <p class="lead" th:text="${pageTitle}">This is an early version of my personal compta manager website</p>
+            </div>
+        </div>
+        <article class="container">
+            <!--/*@thymesVar id="invoice" type="com.softnaptics.comptamain.invoice.model.InvoiceForm"*/-->
+            <form action="#" th:action="@{/invoices/update}" th:object="${invoice}" method="post">
+                <div class="form-group" th:if="${#fields.hasErrors('*')}">
+                    <ul>
+                        <!--<li class="is-invalid invalid-feedback" th:each="err : ${#fields.hasErrors('*')}" th:errors="${err}" />-->
+                    </ul>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('billingDate')}" th:errors="*{billingDate}">Error on billing date</div>
+
+                </div>
+
+                <fieldset class="form-group">
+                    <input class="form-control" id="id" type="hidden" name="id" th:field="*{id}" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" id="name" name="name" th:field="*{name}" />
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="month">Month</label>
+                    <select class="form-control" id="month" th:field="*{month}">
+                        <option th:each="month : ${invoiceMonths}"
+                                th:value="${month}"
+                                th:text="${month}">Month</option>
+                    </select>
+                </fieldset>
+                <!--<fieldset>
+                    <label for="month">Month</label>
+                    <input id="month" name="month" th:field="*{month}" />
+                </fieldset>-->
+                <fieldset class="form-group">
+                    <label for="date">Billing date</label>
+                    <input class="form-control" id="date" name="date" th:field="*{billingDate}" />
+                </fieldset>
+                <input class="btn btn-primary" type="submit" value="Update" />
+            </form>
+        </article>
+    </div>
+</body>
+</html>

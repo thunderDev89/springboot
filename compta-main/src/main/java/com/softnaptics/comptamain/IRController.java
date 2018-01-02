@@ -28,9 +28,8 @@ public class IRController {
     @RequestMapping(path = "/ir", method = RequestMethod.POST)
     public String calculImpotRevenu(Model model, @RequestParam("amount") String amountStr) {
 
-        if (amountStr != null) {
+        if (amountStr != null && !amountStr.isEmpty()) {
             double amount = Doubles.tryParse(amountStr);
-            System.err.println("amount="+amount);
             double result = impotsService.computeIR(amount);
             model.addAttribute("result", result);
         }

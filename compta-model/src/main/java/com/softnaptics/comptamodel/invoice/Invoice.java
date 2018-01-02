@@ -85,11 +85,6 @@ public class Invoice {
         this.billingDate = billingDate;
     }
 
-    /*private void addEntry(AbstractEntry entry) {
-        entries.add(entry);
-        entry.setInvoice(this);
-    }*/
-
     public void addActivity(Activity activity) {
         activities.add(activity);
         activity.setInvoice(this);
@@ -99,7 +94,6 @@ public class Invoice {
     public void addCharge(Charges charge) {
         charges.add(charge);
         charge.setInvoice(this);
-        //addEntry(charge);
     }
 
     public List<AbstractEntry> getEntries() {
@@ -114,7 +108,6 @@ public class Invoice {
     }
 
     public void setActivities(List<Activity> activities) {
-        //addNewEntries(this.activities, activities);
         this.activities = activities;
     }
 
@@ -123,18 +116,8 @@ public class Invoice {
     }
 
     public void setCharges(List<Charges> charges) {
-        //addNewEntries(this.charges, charges);
         this.charges = charges;
     }
-
-    /*private <E extends AbstractEntry> void addNewEntries(List<E> olds, List<E> news) {
-        entries.removeAll(olds);
-        for (E entry :
-                news) {
-            addEntry(entry);
-        }
-        //entries.addAll(news);
-    }*/
 
     @Override
     public String toString() {
