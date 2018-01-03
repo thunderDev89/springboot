@@ -16,8 +16,8 @@
             <section class="lead">
                 <form action="" method="post">
                     <div class="form-group">
-                        <label for="amount">Montant</label>
-                        <input id="amount" class="form-control" type="number" name="amount" placeholder="Montant de vos revenus" />
+                        <label for="amount">Montant (€)</label>
+                        <input id="amount" class="form-control" type="number" name="amount" placeholder="Montant de vos revenus" th:value="${revenus}" />
                     </div>
 
                     <input type="submit" class="btn btn-primary" value="Calculer" />

@@ -1,4 +1,4 @@
-package com.softnaptics.comptamain;
+package com.softnaptics.comptamain.controller;
 
 import com.softnaptics.comptamain.invoice.model.InvoiceForm;
 import com.softnaptics.comptamodel.invoice.Invoice;

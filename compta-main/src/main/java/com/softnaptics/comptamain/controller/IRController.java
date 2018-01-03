@@ -1,4 +1,4 @@
-package com.softnaptics.comptamain;
+package com.softnaptics.comptamain.controller;
 
 import com.google.common.primitives.Doubles;
 import com.softnaptics.comptaservice.ImpotService;
@@ -31,6 +31,7 @@ public class IRController {
         if (amountStr != null && !amountStr.isEmpty()) {
             double amount = Doubles.tryParse(amountStr);
             double result = impotsService.computeIR(amount);
+            model.addAttribute("revenus", amount);
             model.addAttribute("result", result);
         }
         return "views/impots/calcul";

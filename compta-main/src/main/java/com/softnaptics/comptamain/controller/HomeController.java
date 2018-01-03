@@ -1,4 +1,4 @@
-package com.softnaptics.comptamain;
+package com.softnaptics.comptamain.controller;
 
 import com.softnaptics.comptamodel.invoice.Invoice;
 import com.softnaptics.comptarenderer.invoice.InvoiceEntryByTypeRenderer;
