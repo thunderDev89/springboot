@@ -8,8 +8,8 @@ import com.softnaptics.comptamodel.entries.charges.ChargesFactory;
 import com.softnaptics.comptamodel.entries.utils.DateUtils;
 import com.softnaptics.comptamodel.impots.IR;
 import com.softnaptics.comptamodel.invoice.Invoice;
-import com.softnaptics.comptarenderer.invoice.TestActivitiesByTypeRenderer;
-import com.softnaptics.comptarenderer.invoice.TestEntriesByTypeRenderer;
+import com.softnaptics.comptarenderer.invoice.tostring.TestActivitiesByTypeRenderer;
+import com.softnaptics.comptarenderer.invoice.tostring.TestEntriesByTypeRenderer;
 import com.softnaptics.comptarenderer.pricing.PricingAmountRenderer;
 
 import java.time.LocalDate;

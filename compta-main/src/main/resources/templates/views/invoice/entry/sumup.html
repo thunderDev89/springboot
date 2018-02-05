@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="java.lang.String"*/-->
+    <title th:text="${pageTitle}"></title>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Body content -->
+    <div class="container">
+        <div class="text-center">
+            <h1>Compta Manager</h1>
+            <p class="lead" th:text="${pageTitle}">This is an early version of my personal compta manager website</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-default">
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Montant HT</th>
+                    <th>Montant TTC</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--/*@thymesVar id="amounts" type="java.util.List<com.softnaptics.comptarenderer.invoice.AmountsByCat>"*/-->
+                <tr th:each="amount : ${amounts}">
+                    <td th:text="${amount.getType()}">Type</td>
+                    <td th:text="${amount.getAmountHT()}">Montant HT</td>
+                    <td th:text="${amount.getAmountTTC()}">MontantTTC</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

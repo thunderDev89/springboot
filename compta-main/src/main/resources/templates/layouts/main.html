@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-COMPATIBLE" content="IE-edge" />
@@ -41,6 +41,12 @@
                     <li th:class="${detail}? 'active'"><a href="/tasks/latest" th:href="@{/impots/ir}">Impots</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <div class="navbar-text navbar-right">
+                    Welcome <span sec:authentication="name">Guest</span>
+                    <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
+                        | <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</a>
+                    </form>
+                </div>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
@@ -52,7 +58,7 @@
     <!-- Footer -->
     <div id="footer" class="navbar-fixed-bottom">
         <div class="container">
-            <p class="text-muted credit">&copy; Softnaptics 2017 - All rights reserved.</p>
+            <p class="text-muted credit">&copy; Softnaptics 2018 - All rights reserved.</p>
         </div>
     </div>
 

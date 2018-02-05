@@ -14,7 +14,7 @@ public class Charges extends AbstractEntry {
     @Enumerated(EnumType.STRING)
     private EntryType entryType;
 
-    public Charges() {
+    private Charges() {
     }
 
     Charges(String name, double tva, double amountHT, Date pricingDate, EntryType entryType) {

@@ -1,5 +1,6 @@
 package com.softnaptics.comptamain;
 
+import com.google.common.collect.Sets;
 import com.softnaptics.comptamodel.entries.activity.Activity;
 import com.softnaptics.comptamodel.entries.activity.property.ActivityPeriod;
 import com.softnaptics.comptamodel.entries.activity.property.ActivityType;
@@ -7,9 +8,9 @@ import com.softnaptics.comptamodel.entries.charges.Charges;
 import com.softnaptics.comptamodel.entries.charges.ChargesFactory;
 import com.softnaptics.comptamodel.entries.utils.DateUtils;
 import com.softnaptics.comptamodel.invoice.Invoice;
-import com.softnaptics.comptarepository.ActivityRepository;
-import com.softnaptics.comptarepository.ChargesRepository;
-import com.softnaptics.comptarepository.InvoiceRepository;
+import com.softnaptics.comptamodel.user.Role;
+import com.softnaptics.comptamodel.user.User;
+import com.softnaptics.comptarepository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,10 @@ import java.time.Month;
 @Component
 public class DataLoader {
 
+    private UserRepository userRepo;
+
+    private RoleRepository roleRepo;
+
     private InvoiceRepository invoicesRepo;
 
     private ActivityRepository activitiesRepo;
@@ -27,7 +32,9 @@ public class DataLoader {
     private ChargesRepository chargesRepo;
 
     @Autowired
-    public DataLoader(InvoiceRepository invoicesRepo, ActivityRepository activitiesRepo, ChargesRepository chargesRepo) {
+    public DataLoader(RoleRepository roleRepo, UserRepository userRepo, InvoiceRepository invoicesRepo, ActivityRepository activitiesRepo, ChargesRepository chargesRepo) {
+        this.roleRepo = roleRepo;
+        this.userRepo = userRepo;
         this.invoicesRepo = invoicesRepo;
         this.activitiesRepo = activitiesRepo;
         this.chargesRepo = chargesRepo;
@@ -37,6 +44,32 @@ public class DataLoader {
     private void loadData() {
         initProperInvoice();
         initProperInvoice2();
+
+        loadUsersAndRoles();
+        checkUSersAndRoles();
+    }
+
+    private void checkUSersAndRoles() {
+        Iterable<User> users = userRepo.findAll();
+        int a = 1;
+    }
+
+    private void loadUsersAndRoles() {
+        Role adminRole = new Role("ROLE_ADMIN");
+        Role userRole = new Role("ROLE_USER");
+
+        adminRole = roleRepo.save(adminRole);
+        userRole = roleRepo.save(userRole);
+
+
+        final User admin = new User("masterkey", "pass", "aud");
+        admin.setRoles(Sets.newHashSet(adminRole, userRole));
+
+        final User user = new User("homeless", "pass", "user");
+        user.setRoles(Sets.newHashSet(userRole));
+
+        userRepo.save(admin);
+        userRepo.save(user);
     }
 
     private void initProperInvoice() {
@@ -84,19 +117,55 @@ public class DataLoader {
                 500,
                 DateUtils.asDate(LocalDate.of(2017, 12, 13))
         );
+        final Charges chequesCesu2 = ChargesFactory.createExpenseReport(
+                "Achat cheque cesu",
+                .2,
+                1200,
+                DateUtils.asDate(LocalDate.of(2017, 12, 31))
+        );
         final Charges chequesCadeauClients = ChargesFactory.createExpenseReport(
                 "Cartes cadeau clients",
                 .2,
                 600,
                 DateUtils.asDate(LocalDate.of(2017, 12, 24))
         );
+        final Charges loyers = ChargesFactory.createExpenseReport(
+                "Refacturation Loyers",
+                0,
+                2502.11,
+                DateUtils.asDate(LocalDate.of(2017, 12, 31))
+        );
+        final Charges factureMobile = ChargesFactory.createExpenseReport(
+                "Facture mobile",
+                .2,
+                27.14,
+                DateUtils.asDate(LocalDate.of(2017, 12, 29))
+        );
+        final Charges facturesRestau = ChargesFactory.createRestaurantCharge(
+                199,
+                DateUtils.asDate(LocalDate.of(2017, 12, 2))
+        );
+        final Charges facturesRestau2 = ChargesFactory.createRestaurantCharge(
+                57,
+                DateUtils.asDate(LocalDate.of(2017, 12, 16))
+        );
+        final Charges facturesRestau3 = ChargesFactory.createRestaurantCharge(
+                96.5,
+                DateUtils.asDate(LocalDate.of(2017, 12, 12))
+        );
 
         invoice.addActivity(normalDays);
         invoice.addActivity(heureSupp);
         invoice.addActivity(heureSupp1);
         invoice.addCharge(remuneration);
-        invoice.addCharge(chequesCesu);
-        invoice.addCharge(chequesCadeauClients);
+        //invoice.addCharge(chequesCesu);
+        //invoice.addCharge(chequesCesu2);
+        //invoice.addCharge(chequesCadeauClients);
+        invoice.addCharge(loyers);
+        invoice.addCharge(factureMobile);
+        invoice.addCharge(facturesRestau);
+        invoice.addCharge(facturesRestau2);
+        invoice.addCharge(facturesRestau3);
 
         invoicesRepo.save(invoice);
     }

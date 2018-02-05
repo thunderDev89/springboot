@@ -26,4 +26,14 @@ public class ChargesFactory {
                 EntryType.EXPENSE_REPORT
         );
     }
+
+    public static Charges createRestaurantCharge(double amount, Date date) {
+        return new Charges(
+                "Restaurant",
+                .1,
+                amount,
+                date,
+                EntryType.EXPENSE_REPORT
+        );
+    }
 }

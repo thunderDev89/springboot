@@ -1,5 +1,6 @@
 package com.softnaptics.comptamodel.invoice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softnaptics.comptamodel.entries.AbstractEntry;
 import com.softnaptics.comptamodel.entries.activity.Activity;
 import com.softnaptics.comptamodel.entries.charges.Charges;
@@ -22,6 +23,7 @@ public class Invoice {
 
     //TODO Replace all these collections (List) by Set to improve performances
     @Transient
+    @JsonIgnore
     private List<AbstractEntry> entries;
 
     @OneToMany(

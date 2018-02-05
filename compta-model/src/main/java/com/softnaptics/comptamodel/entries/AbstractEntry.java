@@ -1,5 +1,6 @@
 package com.softnaptics.comptamodel.entries;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softnaptics.comptamodel.invoice.Invoice;
 
 import javax.persistence.*;
@@ -25,9 +26,10 @@ public abstract class AbstractEntry implements Entry {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "invoice_id", nullable = false)
+    @JsonIgnore
     private Invoice invoice;
 
-    public AbstractEntry() {
+    protected AbstractEntry() {
     }
 
     public AbstractEntry(String name, double tva, double amountHT, Date pricingDate) {
