@@ -20,11 +20,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/invoices")
-public class InvoiceController {
+public class InvoiceOldController {
     private InvoiceService invoiceService;
 
     @Autowired
-    public InvoiceController(InvoiceService invoiceService) {
+    public InvoiceOldController(InvoiceService invoiceService) {
         this.invoiceService = invoiceService;
     }
 

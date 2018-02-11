@@ -1,5 +1,7 @@
 package com.softnaptics.comptamodel.entries.activity.property;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
@@ -33,6 +35,7 @@ public class ActivityPeriod {
         return count;
     }
 
+    @JsonIgnore
     public double getCountInDayType() {
         if (PeriodType.HOUR == type) {
             return count / 8;

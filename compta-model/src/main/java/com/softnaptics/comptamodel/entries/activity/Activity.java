@@ -17,7 +17,7 @@ public class Activity extends AbstractEntry {
     @Embedded
     private ActivityPeriod period;
 
-    private Activity() {
+    public Activity() {
     }
 
     public Activity(String name, double tva, double amountHT, ActivityType type, ActivityPeriod period, Date pricingDate) {

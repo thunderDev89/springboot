@@ -51,7 +51,6 @@ public class DataLoader {
 
     private void checkUSersAndRoles() {
         Iterable<User> users = userRepo.findAll();
-        int a = 1;
     }
 
     private void loadUsersAndRoles() {
