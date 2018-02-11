@@ -28,6 +28,7 @@ public class InvoiceController {
         return InvoiceDTO.fromEntities(invoices);
     }
 
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public InvoiceDTO create(@RequestBody InvoiceDTO invoice) {
         final Invoice createdInvoice = invoiceService.create(InvoiceDTO.toEntity(invoice));

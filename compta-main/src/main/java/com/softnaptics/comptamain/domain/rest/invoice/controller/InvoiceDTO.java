@@ -1,6 +1,7 @@
 package com.softnaptics.comptamain.domain.rest.invoice.controller;
 
 import com.softnaptics.comptamain.domain.rest.activity.controller.ActivityDTO;
+import com.softnaptics.comptamain.domain.rest.charge.controller.ChargesDTO;
 import com.softnaptics.comptamodel.invoice.Invoice;
 
 import java.time.Month;
@@ -14,9 +15,7 @@ public class InvoiceDTO {
     private String name;
     private Month month;
     private List<ActivityDTO> activities;
-
-    public InvoiceDTO() {
-    }
+    private List<ChargesDTO> charges;
 
     public Integer getId() {
         return id;
@@ -50,6 +49,14 @@ public class InvoiceDTO {
         this.activities = activities;
     }
 
+    public List<ChargesDTO> getCharges() {
+        return charges;
+    }
+
+    public void setCharges(List<ChargesDTO> charges) {
+        this.charges = charges;
+    }
+
     static InvoiceDTO fromEntity(Invoice entity) {
         final InvoiceDTO dto = new InvoiceDTO();
 
@@ -60,6 +67,11 @@ public class InvoiceDTO {
             dto.setActivities(
                     ActivityDTO.fromEntities(
                             entity.getActivities()
+                    )
+            );
+            dto.setCharges(
+                    ChargesDTO.fromEntities(
+                            entity.getCharges()
                     )
             );
         }
@@ -89,8 +101,23 @@ public class InvoiceDTO {
                             dto.getActivities()
                     )
             );
+            entity.setCharges(
+                    ChargesDTO.toEntities(
+                            dto.getCharges()
+                    )
+            );
         }
 
         return entity;
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", month=" + month +
+                ", activities=" + activities +
+                '}';
     }
 }
